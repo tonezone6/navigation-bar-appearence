@@ -16,11 +16,9 @@ struct Example1: View {
                         }
                     }
                 }
-        }
-        .extract { uiView in
-            if let controller = uiView.next as? UINavigationController {
-                controller.navigationBar.scrollEdgeAppearance = .transparent
-            }
+                .navigationAppearence { navigationBar in
+                    navigationBar?.scrollEdgeAppearance = .transparent
+                }
         }
     }
 }

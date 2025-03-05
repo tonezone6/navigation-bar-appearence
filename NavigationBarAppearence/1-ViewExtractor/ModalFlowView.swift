@@ -6,13 +6,11 @@ struct ModalFlowView: View {
     var body: some View {
         NavigationStack {
             ScreenA(isPresented: $isPresented)
-        }
-        .extract { uiView in
-            if let controller = uiView.next as? UINavigationController {
-                controller.navigationBar.prefersLargeTitles = false
-                controller.navigationBar.standardAppearance = .opaqueWhite
-                controller.navigationBar.scrollEdgeAppearance = .opaqueWhite
-            }
+                .navigationAppearence { navigationBar in
+                    navigationBar?.prefersLargeTitles = false
+                    navigationBar?.standardAppearance = .opaqueWhite
+                    navigationBar?.scrollEdgeAppearance = .opaqueWhite
+                }
         }
     }
 }
