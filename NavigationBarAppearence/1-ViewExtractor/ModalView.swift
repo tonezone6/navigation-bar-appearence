@@ -1,11 +1,11 @@
 import SwiftUI
 
-struct ModalFlowView: View {
+struct ModalView: View {
     @Binding var isPresented: Bool
     
     var body: some View {
         NavigationStack {
-            ScreenA(isPresented: $isPresented)
+            ViewA(isPresented: $isPresented)
                 .navigationAppearence { navigationBar in
                     navigationBar?.prefersLargeTitles = false
                     navigationBar?.standardAppearance = .opaqueWhite
@@ -15,14 +15,14 @@ struct ModalFlowView: View {
     }
 }
 
-extension ModalFlowView {
-    struct ScreenA: View {
+extension ModalView {
+    struct ViewA: View {
         @Binding var isPresented: Bool
         
         var body: some View {
             VStack {
                 NavigationLink("Continue") {
-                    ScreenB(isPresented: $isPresented)
+                    ViewB(isPresented: $isPresented)
                 }
                 .buttonStyle(.bordered)
             }
@@ -34,26 +34,26 @@ extension ModalFlowView {
                 }
             }
             .applyBackground(Color(uiColor: UIColor.systemGroupedBackground))
-            .navigationTitle("Step 1")
+            .navigationTitle("Step A")
         }
     }
 
-    struct ScreenB: View {
+    struct ViewB: View {
         @Binding var isPresented: Bool
         
         var body: some View {
             VStack {
                 NavigationLink("Continue") {
-                    ScreenC(isPresented: $isPresented)
+                    ViewC(isPresented: $isPresented)
                 }
                 .buttonStyle(.bordered)
             }
             .applyBackground(Color(uiColor: UIColor.systemGroupedBackground))
-            .navigationTitle("Step 2")
+            .navigationTitle("Step B")
         }
     }
 
-    struct ScreenC: View {
+    struct ViewC: View {
         @Binding var isPresented: Bool
 
         var body: some View {
@@ -64,7 +64,7 @@ extension ModalFlowView {
                 .buttonStyle(.borderedProminent)
             }
             .applyBackground(Color(uiColor: UIColor.systemGroupedBackground))
-            .navigationTitle("Step 3")
+            .navigationTitle("Step C")
         }
     }
 }

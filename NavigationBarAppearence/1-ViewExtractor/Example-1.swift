@@ -5,9 +5,9 @@ struct Example1: View {
     
     var body: some View {
         NavigationStack {
-            Main()
+            ViewA()
                 .sheet(isPresented: $isSheetPresented) {
-                    ModalFlowView(isPresented: $isSheetPresented)
+                    ModalView(isPresented: $isSheetPresented)
                 }
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
@@ -24,7 +24,7 @@ struct Example1: View {
 }
 
 extension Example1 {
-    struct Main: View {
+    struct ViewA: View {
         var body: some View {
             VStack(spacing: 24) {
                 Image(systemName: "globe")
@@ -32,26 +32,8 @@ extension Example1 {
                     .scaledToFit()
                     .frame(height: 120)
                     .foregroundStyle(.secondary.opacity(0.1))
-                NavigationLink("Details A") {
-                    DetailsA()
-                }
-                .buttonStyle(.bordered)
-            }
-            .applyBackground(Color(UIColor.systemGroupedBackground))
-            .navigationTitle("Main")
-        }
-    }
-
-    struct DetailsA: View {
-        var body: some View {
-            VStack(spacing: 24) {
-                Image(systemName: "globe.desk")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 120)
-                    .foregroundStyle(.secondary.opacity(0.1))
-                NavigationLink("Details B") {
-                    DetailsB()
+                NavigationLink("Go to B") {
+                    ViewB()
                 }
                 .buttonStyle(.bordered)
             }
@@ -60,7 +42,25 @@ extension Example1 {
         }
     }
 
-    struct DetailsB: View {
+    struct ViewB: View {
+        var body: some View {
+            VStack(spacing: 24) {
+                Image(systemName: "globe.desk")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 120)
+                    .foregroundStyle(.secondary.opacity(0.1))
+                NavigationLink("Go to C") {
+                    ViewC()
+                }
+                .buttonStyle(.bordered)
+            }
+            .applyBackground(Color(UIColor.systemGroupedBackground))
+            .navigationTitle("Details B")
+        }
+    }
+
+    struct ViewC: View {
         @Environment(\.dismiss) var dismiss
         
         var body: some View {
@@ -70,13 +70,13 @@ extension Example1 {
                     .scaledToFit()
                     .frame(height: 120)
                     .foregroundStyle(.secondary.opacity(0.1))
-                Button("Back") {
+                Button("Back to B") {
                     dismiss()
                 }
                 .buttonStyle(.borderedProminent)
             }
             .applyBackground(Color(UIColor.systemGroupedBackground))
-            .navigationTitle("Details B")
+            .navigationTitle("Details C")
         }
     }
 }
