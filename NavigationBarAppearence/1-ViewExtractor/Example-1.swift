@@ -17,7 +17,7 @@ struct Example1: View {
                     }
                 }
                 .navigationAppearence { navigationBar in
-                    navigationBar?.scrollEdgeAppearance = .transparent
+                    navigationBar?.scrollEdgeAppearance = .customTransparent
                 }
         }
     }
@@ -56,6 +56,7 @@ extension Example1 {
                 .buttonStyle(.bordered)
             }
             .applyBackground(Color(UIColor.systemGroupedBackground))
+            .navigationBar(tintColor: .systemRed)
             .navigationTitle("Details B")
         }
     }

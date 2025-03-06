@@ -35,8 +35,8 @@ struct Example2: View {
         } appearence: { navigationBar in
             navigationBar.tintColor = UIColor(white: 0.2, alpha: 1)
             navigationBar.prefersLargeTitles = true
-            navigationBar.scrollEdgeAppearance = .transparent
-            navigationBar.standardAppearance = .opaqueWhite
+            navigationBar.scrollEdgeAppearance = .customTransparent
+            navigationBar.standardAppearance = .customOpaque
         }
     }
 }

@@ -5,7 +5,7 @@ extension UINavigationBarAppearance {
     private static let largeTextFont = UIFont.systemFont(ofSize: 36, weight: .semibold)
     private static let backButtonImage = UIImage(systemName: "arrow.backward")
 
-    static let opaqueWhite: UINavigationBarAppearance = {
+    static let customOpaque: UINavigationBarAppearance = {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = UIColor.white
@@ -21,7 +21,7 @@ extension UINavigationBarAppearance {
         return appearance
     }()
     
-    static let transparent: UINavigationBarAppearance = {
+    static let customTransparent: UINavigationBarAppearance = {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
         appearance.titleTextAttributes = [.foregroundColor: foregroundColor]

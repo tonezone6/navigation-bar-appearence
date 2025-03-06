@@ -8,8 +8,8 @@ struct ModalView: View {
             ViewA(isPresented: $isPresented)
                 .navigationAppearence { navigationBar in
                     navigationBar?.prefersLargeTitles = false
-                    navigationBar?.standardAppearance = .opaqueWhite
-                    navigationBar?.scrollEdgeAppearance = .opaqueWhite
+                    navigationBar?.standardAppearance = .customOpaque
+                    navigationBar?.scrollEdgeAppearance = .customOpaque
                 }
         }
     }
