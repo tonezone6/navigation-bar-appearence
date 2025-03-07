@@ -1,8 +1,8 @@
 import SwiftUI
 
 extension View {
-    func navigationBar(tintColor: UIColor) -> some View {
-        self.background(NavigationBarModifier(tintColor: tintColor))
+    func navigationBarTintColor(_ color: UIColor) -> some View {
+        self.background(NavigationBarModifier(tintColor: color))
     }
 }
 

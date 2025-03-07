@@ -56,7 +56,7 @@ extension Example1 {
                 .buttonStyle(.bordered)
             }
             .applyBackground(Color(UIColor.systemGroupedBackground))
-            .navigationBar(tintColor: .systemRed)
+            .navigationBarTintColor(.red)
             .navigationTitle("Details B")
         }
     }
