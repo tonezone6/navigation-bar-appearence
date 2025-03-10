@@ -20,6 +20,7 @@ struct Example1: View {
                     navigationBar?.scrollEdgeAppearance = .customTransparent
                 }
         }
+        .tint(Color(uiColor: UINavigationBarAppearance.foregroundColor))
     }
 }
 

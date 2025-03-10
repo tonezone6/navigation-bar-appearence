@@ -2,11 +2,11 @@ import SwiftUI
 
 extension View {
     public func navigationBarTintColor(_ color: UIColor) -> some View {
-        self.background(BarTintColorModifier(tintColor: color))
+        self.background(NavigationBarTintModifier(tintColor: color))
     }
 }
 
-struct BarTintColorModifier: UIViewControllerRepresentable {
+struct NavigationBarTintModifier: UIViewControllerRepresentable {
     let tintColor: UIColor
 
     func makeUIViewController(context: Context) -> UIViewController {
