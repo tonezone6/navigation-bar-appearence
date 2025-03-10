@@ -1,25 +1,22 @@
 import SwiftUI
 
 extension View {
-    func navigationBarTintColor(_ color: UIColor) -> some View {
-        self.background(NavigationBarModifier(tintColor: color))
+    public func navigationBarTintColor(_ color: UIColor) -> some View {
+        self.background(BarTintColorModifier(tintColor: color))
     }
 }
 
-struct NavigationBarModifier: UIViewControllerRepresentable {
+struct BarTintColorModifier: UIViewControllerRepresentable {
     let tintColor: UIColor
 
     func makeUIViewController(context: Context) -> UIViewController {
-        return ViewController(tintColor: tintColor)
+        ViewController(tintColor: tintColor)
     }
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        DispatchQueue.main.async {
-            uiViewController.navigationController?.navigationBar.tintColor = tintColor
-        }
     }
 
-    private class ViewController: UIViewController {
+    class ViewController: UIViewController {
         let tintColor: UIColor
 
         init(tintColor: UIColor) {
@@ -31,12 +28,24 @@ struct NavigationBarModifier: UIViewControllerRepresentable {
             fatalError("init(coder:) has not been implemented")
         }
 
+        override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            
+            DispatchQueue.main.async {
+                self.updateTintColor()
+            }
+        }
+        
         override func viewDidAppear(_ animated: Bool) {
             super.viewDidAppear(animated)
             
             DispatchQueue.main.async {
-                self.navigationController?.navigationBar.tintColor = self.tintColor
+                self.updateTintColor()
             }
+        }
+        
+        func updateTintColor() {
+            navigationController?.navigationBar.tintColor = tintColor
         }
     }
 }
