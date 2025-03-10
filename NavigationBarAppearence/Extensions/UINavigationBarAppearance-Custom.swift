@@ -10,45 +10,51 @@ extension UINavigationBarAppearance {
         }
     }
 
-    static let customOpaque: UINavigationBarAppearance = {
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor.white
+    public static let opaque: UINavigationBarAppearance = {
+        let appearance: UINavigationBarAppearance = .opaqueBackground(color: .white)
         appearance.titleTextAttributes = [.foregroundColor: foregroundColor]
         appearance.largeTitleTextAttributes = [.foregroundColor: foregroundColor]
-        
-        // Back button
-        let config = UIImage.SymbolConfiguration(pointSize: 20, weight: .medium)
-        let backButtonImage = UIImage(systemName: "arrow.backward", withConfiguration: config)
-            //.withTintColor(foregroundColor, renderingMode: .alwaysTemplate)
-        
-        appearance.setBackIndicatorImage(backButtonImage, transitionMaskImage: backButtonImage)
-        let backButtonAppearance = UIBarButtonItemAppearance()
-        backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
-        appearance.backButtonAppearance = backButtonAppearance
-        
+        appearance.setBackButtonImage(systemName: "arrow.backward")
+        appearance.hideBackButtonTitle()
         return appearance
     }()
     
-    static let customTransparent: UINavigationBarAppearance = {
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithTransparentBackground()
+    public static let transparent: UINavigationBarAppearance = {
+        let appearance: UINavigationBarAppearance = .transparentBackground()
         appearance.titleTextAttributes = [.foregroundColor: foregroundColor]
         appearance.largeTitleTextAttributes = [
             .foregroundColor: foregroundColor,
             .font: UIFont.systemFont(ofSize: 36, weight: .semibold)
         ]
-        
-        // Back button
-        let config = UIImage.SymbolConfiguration(pointSize: 20, weight: .medium)
-        let backButtonImage = UIImage(systemName: "arrow.backward", withConfiguration: config)
-            //.withTintColor(foregroundColor, renderingMode: .alwaysTemplate)
-
-        appearance.setBackIndicatorImage(backButtonImage, transitionMaskImage: backButtonImage)
-        let backButtonAppearance = UIBarButtonItemAppearance()
-        backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
-        appearance.backButtonAppearance = backButtonAppearance
-        
+        appearance.setBackButtonImage(systemName: "arrow.backward")
+        appearance.hideBackButtonTitle()
         return appearance
     }()
+}
+
+private extension UINavigationBarAppearance {
+    static func opaqueBackground(color: UIColor) -> UINavigationBarAppearance {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = color
+        return appearance
+    }
+    
+    static func transparentBackground() -> UINavigationBarAppearance {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        return appearance
+    }
+    
+    func setBackButtonImage(systemName: String) {
+        let config = UIImage.SymbolConfiguration(pointSize: 18, weight: .medium)
+        let image = UIImage(systemName: systemName, withConfiguration: config)
+        setBackIndicatorImage(image, transitionMaskImage: image)
+    }
+    
+    func hideBackButtonTitle() {
+        let buttonAppearance = UIBarButtonItemAppearance()
+        buttonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
+        self.backButtonAppearance = buttonAppearance
+    }
 }
