@@ -6,6 +6,10 @@ extension View {
             navigationItem?.backButtonDisplayMode = .minimal
         })
     }
+    
+    public func navigationItem(result: @escaping (UINavigationItem?) -> Void) -> some View {
+        self.background(NavigationItemExtractor(result: result))
+    }
 }
 
 struct NavigationItemExtractor: UIViewControllerRepresentable {
