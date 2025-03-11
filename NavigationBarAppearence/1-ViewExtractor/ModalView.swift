@@ -6,10 +6,10 @@ struct ModalView: View {
     var body: some View {
         NavigationStack {
             ViewA(isPresented: $isPresented)
-                .navigationAppearence { navigationBar in
-                    navigationBar?.prefersLargeTitles = false
-                    navigationBar?.standardAppearance = .opaque
-                    navigationBar?.scrollEdgeAppearance = .opaque
+                .navigationBar {
+                    $0.prefersLargeTitles = false
+                    $0.standardAppearance = .opaque
+                    $0.scrollEdgeAppearance = .opaque
                 }
         }
     }

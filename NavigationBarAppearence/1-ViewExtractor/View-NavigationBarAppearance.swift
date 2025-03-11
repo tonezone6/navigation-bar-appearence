@@ -1,15 +1,15 @@
 import SwiftUI
 
 extension View {
-    public func navigationAppearence(
-        result: @escaping (UINavigationBar?) -> Void
+    public func navigationBar(
+        result: @escaping (UINavigationBar) -> Void
     ) -> some View {
         self.background(NavigationBarExtractor(result: result))
     }
 }
 
 struct NavigationBarExtractor: UIViewControllerRepresentable {
-    let result: (UINavigationBar?) -> Void
+    let result: (UINavigationBar) -> Void
 
     func makeUIViewController(context: Context) -> UIViewController {
         let viewController = UIViewController()

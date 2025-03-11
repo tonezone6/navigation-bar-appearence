@@ -15,7 +15,6 @@ extension UINavigationBarAppearance {
         appearance.titleTextAttributes = [.foregroundColor: foregroundColor]
         appearance.largeTitleTextAttributes = [.foregroundColor: foregroundColor]
         appearance.setBackButtonImage(systemName: "arrow.backward")
-        appearance.hideBackButtonTitle()
         return appearance
     }()
     
@@ -27,7 +26,6 @@ extension UINavigationBarAppearance {
             .font: UIFont.systemFont(ofSize: 36, weight: .semibold)
         ]
         appearance.setBackButtonImage(systemName: "arrow.backward")
-        appearance.hideBackButtonTitle()
         return appearance
     }()
 }
@@ -47,12 +45,13 @@ private extension UINavigationBarAppearance {
     }
     
     func setBackButtonImage(systemName: String) {
-        let config = UIImage.SymbolConfiguration(pointSize: 18, weight: .medium)
+        let config = UIImage.SymbolConfiguration(pointSize: 20, weight: .semibold)
         let image = UIImage(systemName: systemName, withConfiguration: config)
         setBackIndicatorImage(image, transitionMaskImage: image)
     }
     
     func hideBackButtonTitle() {
+        // Hide back button title globally
         let buttonAppearance = UIBarButtonItemAppearance()
         buttonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
         self.backButtonAppearance = buttonAppearance

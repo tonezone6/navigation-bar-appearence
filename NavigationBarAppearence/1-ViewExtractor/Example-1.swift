@@ -16,8 +16,8 @@ struct Example1: View {
                         }
                     }
                 }
-                .navigationAppearence { navigationBar in
-                    navigationBar?.scrollEdgeAppearance = .transparent
+                .navigationBar {
+                    $0.scrollEdgeAppearance = .transparent
                 }
         }
         .tint(Color(uiColor: UINavigationBarAppearance.foregroundColor))
@@ -39,6 +39,7 @@ extension Example1 {
                 .buttonStyle(.bordered)
             }
             .applyBackground(Color(UIColor.systemGroupedBackground))
+            .navigationBackButtonMinimal()
             .navigationTitle("Details A")
         }
     }
@@ -58,6 +59,7 @@ extension Example1 {
             }
             .applyBackground(Color(UIColor.systemGroupedBackground))
             .navigationBarTintColor(.red)
+            .navigationBackButtonMinimal()
             .navigationTitle("Details B")
         }
     }
@@ -78,6 +80,7 @@ extension Example1 {
                 .buttonStyle(.borderedProminent)
             }
             .applyBackground(Color(UIColor.systemGroupedBackground))
+            .navigationBackButtonMinimal()
             .navigationTitle("Details C")
         }
     }
